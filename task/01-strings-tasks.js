@@ -189,11 +189,12 @@ function extractEmails(str) {
  *
  * @example
  *
- *            '┌────┐\n'+        
+ *            '┌────┐\n'+            
  *  (6,4) =>  '│    │\n'+
  *            '│    │\n'+
  *            '└────┘\n'
- *
+ *               
+ * 
  *  (2,2) =>  '┌┐\n'+
  *            '└┘\n'
  *
@@ -203,16 +204,9 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    
-    if(width==6 && height==4)
-        return "┌────┐\n"+"│    │\n".repeat(2)+"└────┘\n";
-    
-    else if(width==2 && height==2)
-        return  "┌┐\n└┘\n";
-
-    else if(width==12 && height==3)
-        return "┌──────────┐\n│          │\n└──────────┘\n"; 
-            
+    let str = "│"+" ".repeat(width-2)+"│";
+   
+        return "┌"+"─".repeat(width-2)+"┐\n"+`${str}\n`.repeat(height-2)+"└"+"─".repeat(width-2)+"┘\n";      
     }
 
 
