@@ -54,19 +54,18 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-    //console.log('value1: ', value1);
-    //console.log('value2: ', value2);
-    
-   
-    if(value1 == Number.MAX_VALUE && value2 == Number.MAX_VALUE) {
+
+     if(value1+value2 == Number.POSITIVE_INFINITY) {
         return Number.MAX_VALUE;
     }
-   
+         
+    else if(value1+value2 == Number.NEGATIVE_INFINITY) {
+        return -Number.MAX_VALUE;
+    }  
     
-  return (value1+value2)/2;
-    
-
-    ///throw new Error('Not implemented');
+    else{  
+        return (value1+value2)/2;
+    }
 }
 
 /**
@@ -193,32 +192,40 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-    //console.log('pow: ', pow);
-   // console.log('num: ', num);
-    
+    let arr = String(num).split("");
+    let row1 = ["0", "1", "2", "3", "4"];
+    let row2 = ["5","6", "7", "8", "9"];
+    let i =  arr.length - (arr.length - pow); 
+   
     if(pow == 0){
         return num;
-        
-    }
-    if(pow == 1){
-        return ((num/1000).toFixed(2))*1000;
-        
-    }
-    if(pow == 2){
-       return ((num/1000).toFixed(1))*1000;
-        
     }
     
-    if(pow == 3){
-       return ((num/1000).toFixed(0))*1000;
-        //return num - Number(String(num).slice(-3)); 
-    }
+    else if(row1.includes(arr[arr.length - pow-1])){
 
-    
+       arr.splice(arr.length - pow, arr.length - (arr.length - pow), "0".repeat(arr.length - (arr.length - pow)));
+       return  Number(arr.join(""));
+
+    }
+        
+    else if(row2.includes(arr[arr.length - pow-1])){
+        
+        arr[arr.length - pow-1]++;
+        arr.splice(arr.length - pow, arr.length - (arr.length - pow), "0".repeat(arr.length - (arr.length - pow)));
+        return Number(arr.join(""));
+        
+        if(arr[arr.length - pow-1] == 9){
+            arr[arr.length - pow-1] = 0;
+            arr[arr.length - pow-2] +1;
+            arr.splice(arr.length - pow, arr.length - (arr.length - pow), "0".repeat(arr.length - (arr.length - pow)));
+            return Number(arr.join(""));
+        }
+
+    }
 }
 /**
  * Returns true is the number is prime; otherwise false.
- * See: https://en.wikipedia.org/wiki/Primality_test
+ * See: https://en.wikipedia.org/wiki/Primality_test?) 
  *
  * @param {number} n
  * @return {bool}
