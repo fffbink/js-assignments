@@ -22,7 +22,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   return Date.parse(value);
+   throw new Error('Not implemented');
 }
 
 /**
@@ -37,7 +37,7 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-   return Date.parse(value);
+   throw new Error('Not implemented');
 }
 
 
@@ -56,8 +56,8 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-   
-   return !((date.getFullYear() % 4) || (!(date.getFullYear() % 100) && (date.getFullYear() % 400)));
+
+   throw new Error('Not implemented');
 }
 
 
@@ -77,13 +77,10 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   
-   let date = new Date(endDate-startDate);
-   let hours = date.getHours()+(date.getTimezoneOffset()/60)+(endDate.getDate()-startDate.getDate())*24+(endDate.getFullYear()-startDate.getFullYear())*8760;
-   hours = (hours < 10 && hours >= 0) ? "0" + hours : hours;
-   return `${hours}${date.toISOString().slice(13,23)}`;
-   }
-   
+
+   throw new Error('Not implemented');
+}
+
 /**
  * Returns the angle (in radians) between the hands of an analog clock for the specified Greenwich time.
  * If you have problem with solution please read: https://en.wikipedia.org/wiki/Clock_angle_problem
@@ -98,14 +95,14 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-    throw new Error('Not implemented');
+   throw new Error('Not implemented');
 }
 
 
 module.exports = {
-    parseDataFromRfc2822: parseDataFromRfc2822,
-    parseDataFromIso8601: parseDataFromIso8601,
-    isLeapYear: isLeapYear,
-    timeSpanToString: timeSpanToString,
-    angleBetweenClockHands: angleBetweenClockHands
+   parseDataFromRfc2822: parseDataFromRfc2822,
+   parseDataFromIso8601: parseDataFromIso8601,
+   isLeapYear: isLeapYear,
+   timeSpanToString: timeSpanToString,
+   angleBetweenClockHands: angleBetweenClockHands
 };
